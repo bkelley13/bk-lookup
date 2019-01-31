@@ -1,0 +1,59 @@
+{
+	"name": "bk-lookup",
+	"displayName": "bk-lookup",
+	"description": "Invoke a browser to lookup a bug id seen in code",
+	"version": "0.0.1",
+	"publisher": "bkthunder",
+	"engines": {
+		"vscode": "^1.30.0"
+	},
+    "keywords": [
+        "search",
+        "browser",
+        "selection"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+	"main": "./out/extension.js",
+	"contributes": {
+        "commands": [
+            {
+                "command": "extension.lookupBug",
+                "title": "Lookup Bug"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "extension.lookupBug",
+                    "group": "search"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "Lookup Bug",
+            "properties": {
+                "oracleBugdb.url": {
+                    "type": "string",
+                    "default": "https://bug.oraclecorp.com/pls/bug/webbug_edit.edit_info_top?rptno=",
+                    "description": "Lookup bug in bug site"
+                }
+            }
+        }
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.1.4",
+		"vscode": "^1.1.25",
+		"tslint": "^5.8.0",
+		"@types/node": "^8.10.25",
+		"@types/mocha": "^2.2.42"
+	}
+}
