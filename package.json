@@ -2,7 +2,7 @@
     "name": "bk-lookup",
     "displayName": "bk-lookup",
     "description": "Invoke a browser to lookup a bug id seen in code",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "bkthunder",
     "icon": "bkthunder-logo-128.png",
     "repository": "https://github.com/bkelley13/bk-lookup",
