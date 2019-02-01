@@ -8,7 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
-		console.log('Congratulations, your extension "bk-lookup" is now active!');
+		console.log('Extension "bk-lookup" is now active!');
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
@@ -23,10 +23,39 @@ function bugSearch(){
     invokeURL(text);
 
     async function invokeURL(word: any) {
-        let config = vscode.workspace.getConfiguration('oracleBugdb');
-        let baseurl = config.get('url');
+        const configuredView = vscode.workspace.getConfiguration().get('bugdb.source');
+        let url;
+        switch (configuredView) {
+            case 'oracle':
+                {
+                    let bugconfig = vscode.workspace.getConfiguration('oracleBugdb');
+                    let jiraconfig = vscode.workspace.getConfiguration('oracleJIRA');
+                
+                    let bugurl = bugconfig.get('url');
+                    let jiraurl = jiraconfig.get('url');
+                    url = bugurl;
+            
+                    if(word.includes("JIRA"))
+                        url = jiraurl;
+                }                
+                break;
+            case 'google':
+                {
+                let bugconfig = vscode.workspace.getConfiguration('googleIssues');            
+                let bugurl = bugconfig.get('url');
+                url = bugurl;        
+                }                            
+                break;
+            case 'mozilla':
+                {
+                let bugconfig = vscode.workspace.getConfiguration('bugzilla');            
+                let bugurl = bugconfig.get('url');
+                url = bugurl;        
+                }                            
+                break;
+        }
 
-        let uri = vscode.Uri.parse(baseurl + word);
+        let uri = vscode.Uri.parse(url + word);
         await vscode.commands.executeCommand("vscode.open", uri);
     }
 

@@ -1,12 +1,14 @@
 {
-	"name": "bk-lookup",
-	"displayName": "bk-lookup",
-	"description": "Invoke a browser to lookup a bug id seen in code",
-	"version": "0.0.1",
-	"publisher": "bkthunder",
-	"engines": {
-		"vscode": "^1.30.0"
-	},
+    "name": "bk-lookup",
+    "displayName": "bk-lookup",
+    "description": "Invoke a browser to lookup a bug id seen in code",
+    "version": "0.0.1",
+    "publisher": "bkthunder",
+    "icon": "bkthunder-logo-128.png",
+    "repository": "https://github.com/bkelley13/bk-lookup",
+    "engines": {
+        "vscode": "^1.30.0"
+    },
     "keywords": [
         "search",
         "browser",
@@ -15,8 +17,8 @@
     "activationEvents": [
         "*"
     ],
-	"main": "./out/extension.js",
-	"contributes": {
+    "main": "./out/extension.js",
+    "contributes": {
         "commands": [
             {
                 "command": "extension.lookupBug",
@@ -34,26 +36,47 @@
         "configuration": {
             "title": "Lookup Bug",
             "properties": {
+                "bugdb.source": {
+                    "type" : "string",
+                    "enum" : [ "oracle", "google", "mozilla" ],
+                    "default" : "oracle",
+                    "description" : "Which bug db to use"
+                },
                 "oracleBugdb.url": {
                     "type": "string",
                     "default": "https://bug.oraclecorp.com/pls/bug/webbug_edit.edit_info_top?rptno=",
                     "description": "Lookup bug in bug site"
+                },
+                "oracleJIRA.url": {
+                    "type": "string",
+                    "default": "https://jira.oraclecorp.com/jira/browse/",
+                    "description": "Lookup JIRA issue"
+                },
+                "googleIssues.url": {
+                    "type": "string",
+                    "default": "https://issuetracker.google.com/issues/",
+                    "description": "Lookup issue on google site"
+                },
+                "bugzilla.url": {
+                    "type": "string",
+                    "default": "https://bugzilla.mozilla.org/show_bug.cgi?id=",
+                    "description": "Lookup issue in bugzilla"
                 }
             }
         }
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "npm run compile && node ./node_modules/vscode/bin/test"
-	},
-	"devDependencies": {
-		"typescript": "^3.1.4",
-		"vscode": "^1.1.25",
-		"tslint": "^5.8.0",
-		"@types/node": "^8.10.25",
-		"@types/mocha": "^2.2.42"
-	}
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^3.1.4",
+        "vscode": "^1.1.25",
+        "tslint": "^5.8.0",
+        "@types/node": "^8.10.25",
+        "@types/mocha": "^2.2.42"
+    }
 }
