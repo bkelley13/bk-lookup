@@ -2,7 +2,7 @@
     "name": "bk-lookup",
     "displayName": "bk-lookup",
     "description": "Invoke a browser to lookup a bug id seen in code",
-    "version": "0.0.2",
+    "version": "1.0.0",
     "publisher": "bkthunder",
     "icon": "bkthunder-logo-128.png",
     "repository": "https://github.com/bkelley13/bk-lookup",
@@ -37,10 +37,14 @@
             "title": "Lookup Bug",
             "properties": {
                 "bugdb.source": {
-                    "type" : "string",
-                    "enum" : [ "oracle", "google", "mozilla" ],
-                    "default" : "oracle",
-                    "description" : "Which bug db to use"
+                    "type": "string",
+                    "enum": [
+                        "oracle",
+                        "google",
+                        "mozilla"
+                    ],
+                    "default": "oracle",
+                    "description": "Which bug db to use"
                 },
                 "oracleBugdb.url": {
                     "type": "string",
